@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class Fire {
     /**
      * Returns how long it takes for all vulnerable trees to be set on fire if a
@@ -40,6 +43,16 @@ public class Fire {
         // just a location. What other information might be useful?
 
         // Implement this AND add more tests!!!
+
         return -1;
+    }
+
+    public static List<int[]> possibleMoves(char[][] forest) {
+        int[][] moves = new int[][] {
+            {-1, 0},
+            { 1, 0},
+            { 0,-1},
+            { 0, 1}
+        };
     }
 }
