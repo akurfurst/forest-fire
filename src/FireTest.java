@@ -77,8 +77,8 @@ public class FireTest {
         int actual = Fire.timeToBurn(forest, matchR, matchC);
 
         assertEquals(expected, actual);
-    }
-
+    }\
+    
     @Test
     public void testTimeToBurnOutOfBounds() {
         char[][] forest = {
