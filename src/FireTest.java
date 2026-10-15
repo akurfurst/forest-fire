@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -76,5 +77,21 @@ public class FireTest {
         int actual = Fire.timeToBurn(forest, matchR, matchC);
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testTimeToBurnOutOfBounds() {
+        char[][] forest = {
+            {'.','.','.','t','t','t','.','.','t'},
+            {'.','.','t','t','.','.','.','.','t'},
+            {'.','.','t','t','t','t','t','t','t'},
+            {'t','t','t','t','.','.','.','.','.'}
+        };
+
+        int matchR = -1;
+        int matchC = -1;
+
+        assertThrows(IndexOutOfBoundsException.class, () -> Fire.timeToBurn(forest, matchR, matchC));
+
     }
 }
