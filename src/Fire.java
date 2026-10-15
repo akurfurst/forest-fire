@@ -42,7 +42,7 @@ public class Fire {
      * @return the time at which the final tree to be incinerated starts burning
      */
     public static int timeToBurn(char[][] forest, int matchR, int matchC) {
-        if (forest[matchR][matchC] != 't') return 0;
+        if (forest[matchR][matchC] != 't') return -1;
         Location start = new Location(matchR,matchC);
 
         Queue<Location> q = new LinkedList<>();
