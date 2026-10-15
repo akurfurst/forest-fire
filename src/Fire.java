@@ -47,18 +47,20 @@ public class Fire {
 
         Queue<Location> q = new LinkedList<>();
         Set<Location> visited = new HashSet<>();
-        int steps = 0;
+        int steps = -1;
         q.add(start);
         while (!q.isEmpty()) {
             int qSize = q.size();
 
             for(int i = 0; i < qSize; i++){
                 Location current = q.remove();
+                //System.out.println(current);
                 if(visited.contains(current)) continue;
                 visited.add(current);
                 List<Location> neighbors = possibleMoves(forest, current);
                 for(Location neighbor: neighbors){
-                    q.add(neighbor);
+                    if(!visited.contains(neighbor)) q.add(neighbor);
+                    
                 }
             }
             steps++;
@@ -83,7 +85,7 @@ public class Fire {
             Location possibleMove = new Location(current.row() + move[0], current.column() + move[1]);
             if( possibleMove.row() >= 0 && possibleMove.row() < forest.length && 
                 possibleMove.column() >= 0 && possibleMove.column() < forest[0].length && 
-                forest[possibleMove.row()][possibleMove.column()] != 't'){
+                forest[possibleMove.row()][possibleMove.column()] != '.'){
                     validMoves.add(possibleMove);
                }
         }
