@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.*;
 
 public class Fire {
     /**
@@ -45,16 +46,29 @@ public class Fire {
         Location start = new Location(matchR,matchC);
 
         Queue<Location> q = new LinkedList<>();
-
+        Set<Location> visited = new HashSet<>();
+        int steps = 0;
+        q.add(start);
         while (!q.isEmpty()) {
-            
+            int qSize = q.size();
+
+            for(int i = 0; i < qSize; i++){
+                Location current = q.remove();
+                if(visited.contains(current)) continue;
+                visited.add(current);
+                List<Location> neighbors = possibleMoves(forest, current);
+                for(Location neighbor: neighbors){
+                    q.add(neighbor);
+                }
+            }
+            steps++;
         }
         // HINT: when adding to your BFS queue, you can include more information than
         // just a location. What other information might be useful?
 
         // Implement this AND add more tests!!!
 
-        return -1;
+        return steps;
     }
 
     public static List<Location> possibleMoves(char[][] forest, Location current) {
@@ -69,7 +83,7 @@ public class Fire {
             Location possibleMove = new Location(current.row() + move[0], current.column() + move[1]);
             if( possibleMove.row() >= 0 && possibleMove.row() < forest.length && 
                 possibleMove.column() >= 0 && possibleMove.column() < forest[0].length && 
-                forest[possibleMove.row()][possibleMove.column()] != 'w'){
+                forest[possibleMove.row()][possibleMove.column()] != 't'){
                     validMoves.add(possibleMove);
                }
         }
